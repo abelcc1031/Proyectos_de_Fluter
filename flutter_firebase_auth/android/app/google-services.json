@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142670533427",
+    "project_id": "flutter-firebase-auth-152df",
+    "storage_bucket": "flutter-firebase-auth-152df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142670533427:android:4af9274dee8d8da4ce2446",
+        "android_client_info": {
+          "package_name": "app.meedu.flutter_firebase_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142670533427-haavji2rl8nmpg3h9161q7mqm9plov9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8rYRn2BJ0e5SF6cL7nTYLC7LWOO7y7f0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142670533427-haavji2rl8nmpg3h9161q7mqm9plov9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
