@@ -1,6 +1,6 @@
 
 import 'package:fisioterapia/custom_icons.dart';
-import 'package:fisioterapia/screens/screens.dart';
+import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:fisioterapia/theme/theme.dart';
 import 'package:fisioterapia/widgets/textField.dart';
 import 'package:fisioterapia/widgets/widgets.dart';
@@ -9,8 +9,12 @@ import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
 
+  final prefs = new PreferenciasUsuario();
+
   @override
   Widget build(BuildContext context) {
+
+    prefs.ultimaPagina = 'login_screen';
     return Scaffold(
       body: Stack(
         children: [
@@ -84,7 +88,7 @@ class ButtonLogin extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10,),
       child: ElevatedButton(
-        onPressed: () { Navigator.pushNamed(context, 'menu_principal_screen');}, 
+        onPressed: () { Navigator.pushReplacementNamed(context, 'menu_principal_screen');}, 
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,

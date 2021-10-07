@@ -14,14 +14,15 @@ class NavDrawer extends StatelessWidget {
             accountName: Text('Abel'), 
             accountEmail: Text('abelcc1031@gmail.com'),
             currentAccountPicture: CircleAvatar(
-              // Utilizar FadeInImage
               child: ClipOval(
-                child: Image.network(
-                  'https://cutt.ly/bEDfkVw',
+                child: FadeInImage(
+                  // image: NetworkImage('https://cutt.ly/bEDfkVw'), 
+                  image: NetworkImage('https://cutt.ly/VEK3dGG'), 
+                  placeholder: AssetImage('assets/background.jpg'),
                   width: 90,
                   height: 90,
                   fit: BoxFit.cover,
-                ),
+                )
               ),
             ),
             decoration: BoxDecoration(
@@ -38,7 +39,10 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.saturacion),
             title: Text('Medición de saturación'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'card_pulsimetro');
+            },
           ),
           ListTile(
             leading: Icon(CustomIcons.ejercicios),
@@ -53,12 +57,18 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.guia),
             title: Text('Guía de uso'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'card_guia');
+            },
           ),
           ListTile(
             leading: Icon(CustomIcons.contacto),
             title: Text('Contacto'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'card_fisioterapueta');
+            },
           ),
           ListTile(
             leading: Icon(CustomIcons.consideraciones),
@@ -69,7 +79,10 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.salir),
             title: Text('Salir'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'login_screen');
+            },
           ),
         ],
       ),

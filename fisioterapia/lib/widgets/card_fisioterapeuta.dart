@@ -1,6 +1,6 @@
 
 import 'package:fisioterapia/custom_icons.dart';
-import 'package:fisioterapia/main.dart';
+import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:fisioterapia/theme/theme.dart';
 import 'package:fisioterapia/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +14,32 @@ class CardFisioterapeuta extends StatefulWidget {
 }
 
 class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
+
+  final prefs = new PreferenciasUsuario();
+  
   // double height, width;
   @override
   Widget build(BuildContext context) {
+
+    prefs.ultimaPagina = 'card_fisioterapueta';
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        backgroundColor: DeliveryColors.background,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: Text('Hola Abel',),
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
@@ -28,6 +48,7 @@ class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
 
         ],
      ),
+     bottomNavigationBar: CustomBottonNavigation(),
    );
   }
 }
@@ -49,7 +70,7 @@ class ImagenFisioterapeuta extends StatelessWidget {
         children: [
           Container(
             color: DeliveryColors.background,
-            height: height * .6,
+            height: height * .5,
             width: double.infinity,
 
             child: Center(
@@ -118,7 +139,7 @@ class DescripcionFisioterapeuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .45,
+      height: height * .35,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2
@@ -215,3 +236,5 @@ class DescripcionFisioterapeuta extends StatelessWidget {
     );
   }
 }
+
+

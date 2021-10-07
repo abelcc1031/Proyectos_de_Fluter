@@ -1,5 +1,6 @@
 
 import 'package:fisioterapia/custom_icons.dart';
+import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:fisioterapia/theme/theme.dart';
 import 'package:fisioterapia/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,30 @@ class CardPulsimetro extends StatefulWidget {
 }
 
 class _CardPulsimetroState extends State<CardPulsimetro> {
+
+  final prefs = new PreferenciasUsuario();
+
   // double height, width;
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'card_pulsimetro';
+    
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        backgroundColor: DeliveryColors.background,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: Text('Hola Abel',),
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
@@ -30,6 +49,7 @@ class _CardPulsimetroState extends State<CardPulsimetro> {
 
         ],
      ),
+     bottomNavigationBar: CustomBottonNavigation(),
    );
   }
 }
@@ -48,7 +68,7 @@ class PlayPulsimetro extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Positioned(
-      top: height * .5 - (width * .34),
+      top: height * .5 - (width * .53),
       left: width * .35,
       child: Container(
         decoration: BoxDecoration(
@@ -84,7 +104,7 @@ class ImagenPulsimetro extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: height * .5,
+            height: height * .4,
             width: double.infinity,
             decoration: BoxDecoration(
               // color: Colors.red, 
@@ -115,7 +135,7 @@ class DescripcionPulsimetro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .6,
+      height: height * .5,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2
@@ -151,33 +171,7 @@ class DescripcionPulsimetro extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
-            SizedBox(height: 60,),
-            Center(
-              child: InkWell(
-                onTap: () {},
-                splashColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
-                highlightColor: Colors.transparent,
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      boxShadow2
-                    ],
-                    color: DeliveryColors.background,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 18, vertical: 8),
-                    child: Text(
-                      'PLAY',
-                      style: TextStyle(color: DeliveryColors.white, fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            )
+  
           ],
         ),
       ),
