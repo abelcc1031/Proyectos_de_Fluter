@@ -1,0 +1,121 @@
+[ 
+  [
+
+    {
+      "title": "Respiración abdominal",
+      "time": "45 seconds",
+      "thumbnail": "assets/squat1.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1633961582/fisioterapia%20respiratoria/ejerciciosRespiratorios_a8psnf.mp4"
+    },
+    {
+      "title": "Levantando los hombros",
+      "time": "55 seconds",
+      "thumbnail": "assets/squat2.jpg",
+      "videoUrl": "https://img.bslmeiyu.com/uploads/20170706/The%20Bananas%20Song%20%20Counting%20Bananas%20%20Super%20Simple%20Songs.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://img.bslmeiyu.com/uploads/20170706/The%20Bananas%20Song%20%20Counting%20Bananas%20%20Super%20Simple%20Songs.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://img.bslmeiyu.com/uploads/20170706/The%20Bananas%20Song%20%20Counting%20Bananas%20%20Super%20Simple%20Songs.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://img.bslmeiyu.com/uploads/20170706/The%20Bananas%20Song%20%20Counting%20Bananas%20%20Super%20Simple%20Songs.mp4"
+    }
+  ],
+  [
+
+    {
+      "title": "Respiración abdominal",
+      "time": "45 seconds",
+      "thumbnail": "assets/squat1.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    },
+    {
+      "title": "Levantando los hombros",
+      "time": "55 seconds",
+      "thumbnail": "assets/squat2.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201326/fisioterapia%20respiratoria/segundo_json_by4l3m.mp4"
+    }
+  ],
+  [
+
+    {
+      "title": "Respiración abdominal",
+      "time": "45 seconds",
+      "thumbnail": "assets/squat1.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    },
+    {
+      "title": "Levantando los hombros",
+      "time": "55 seconds",
+      "thumbnail": "assets/squat2.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    },
+    {
+      "title": "Inclinandose al suelo",
+      "time": "60 seconds",
+      "thumbnail": "assets/squat3.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    },
+    {
+      "title": "Brazos cruzados",
+      "time": "120 seconds",
+      "thumbnail": "assets/squat4.jpg",
+      "videoUrl": "https://res.cloudinary.com/abelcc1031/video/upload/v1634201463/fisioterapia%20respiratoria/tercero_fvbakr.mp4"
+    }
+  ]
+
+
+]

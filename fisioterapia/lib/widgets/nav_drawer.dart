@@ -16,8 +16,8 @@ class NavDrawer extends StatelessWidget {
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: FadeInImage(
-                  // image: NetworkImage('https://cutt.ly/bEDfkVw'), 
-                  image: NetworkImage('https://cutt.ly/VEK3dGG'), 
+                  image: NetworkImage('https://cutt.ly/FE91Vgw'), 
+                  // image: NetworkImage('https://cutt.ly/VEK3dGG'), 
                   placeholder: AssetImage('assets/background.jpg'),
                   width: 90,
                   height: 90,
@@ -37,6 +37,14 @@ class NavDrawer extends StatelessWidget {
           ),
 
           ListTile(
+            leading: Icon(CustomIcons.principal),
+            title: Text('Menu Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'menu_principal_screen');
+            },
+          ),
+          ListTile(
             leading: Icon(CustomIcons.saturacion),
             title: Text('Medición de saturación'),
             onTap: () {
@@ -47,7 +55,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.ejercicios),
             title: Text('Ejercicios respiratorios'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, 'nivel_ejercicios_screen');
+            },
           ),
           ListTile(
             leading: Icon(CustomIcons.recomendacion),
@@ -73,7 +83,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.consideraciones),
             title: Text('Consideraciones'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, 'video_info_screen');
+            },
           ),
           Divider(),
           ListTile(

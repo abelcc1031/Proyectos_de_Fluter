@@ -99,7 +99,7 @@ class _BodyMenuPrinicipal extends StatelessWidget {
       case 0:
         return HomeBodyMenu();
       case 1:
-        return EjerciciosScreen();
+        return NivelEjercicios();
       case 2:
         return PerfilScreen();
       default:

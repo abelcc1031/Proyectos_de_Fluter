@@ -12,6 +12,8 @@ class DeliveryColors {
   static final pink = Color(0xFFF5638B);
   static final background = Color(0xFF241e38);
   static final borders = Color(0xFF5F5080);
+  static final gradientFirst = Color(0xff0f17ad);
+  static final gradientSecond = Color(0xFF302f51);
   // static final borders = Color(0xFF0049a8);
 }
 

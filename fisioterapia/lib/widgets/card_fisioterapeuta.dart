@@ -48,7 +48,6 @@ class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
 
         ],
      ),
-     bottomNavigationBar: CustomBottonNavigation(),
    );
   }
 }
@@ -114,7 +113,7 @@ class ImagenFisioterapeuta extends StatelessWidget {
                           fontSize: 10,
                         ),
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(height: 50,),
                     ],
                   )
                 ],
@@ -139,7 +138,7 @@ class DescripcionFisioterapeuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .35,
+      height: height * .45,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2

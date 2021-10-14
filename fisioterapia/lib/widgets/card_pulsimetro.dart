@@ -35,6 +35,7 @@ class _CardPulsimetroState extends State<CardPulsimetro> {
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Text('Hola Abel',),
             ),
+            
           ],
         ),
       ),
@@ -49,7 +50,6 @@ class _CardPulsimetroState extends State<CardPulsimetro> {
 
         ],
      ),
-     bottomNavigationBar: CustomBottonNavigation(),
    );
   }
 }
@@ -135,7 +135,7 @@ class DescripcionPulsimetro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .5,
+      height: height * .6,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2

@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Nivel 1",
+        "img": "assets/ex1.png"
+    },
+    {
+        "title": "Nivel 2",
+        "img": "assets/ex2.png"
+    },
+    {
+        "title": "Nivel 3",
+        "img": "assets/ex3.png"
+    },
+    {
+        "title": "Nivel 4",
+        "img": "assets/ex4.png"
+    },
+    {
+        "title": "Nivel 5",
+        "img": "assets/ex3.png"
+    },
+    {
+        "title": "Nivel 6",
+        "img": "assets/ex4.png"
+    }
+    
+]

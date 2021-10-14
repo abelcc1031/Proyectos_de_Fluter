@@ -11,7 +11,7 @@ class CardTable extends StatelessWidget {
         TableRow(
           children: [
             _SingleCard( imagen: AssetImage('assets/pulsimetro.png'), text: 'Guía del pulsímetro', ruta: 'card_pulsimetro',),
-            _SingleCard( imagen: AssetImage('assets/ejercicios.png'), text: 'Ejercicios respiratorios', ruta: 'card_pulsimetro',),
+            _SingleCard( imagen: AssetImage('assets/ejercicios.png'), text: 'Ejercicios respiratorios', ruta: 'nivel_ejercicios_screen',),
           ]
         ),
         TableRow(

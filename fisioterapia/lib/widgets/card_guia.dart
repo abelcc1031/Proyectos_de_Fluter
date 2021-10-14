@@ -53,7 +53,6 @@ class _CardGuiaState extends State<CardGuia> {
 
         ],
      ),
-     bottomNavigationBar: CustomBottonNavigation(),
    );
   }
 }
@@ -141,7 +140,7 @@ class DescripcionGuia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .5,
+      height: height * .6,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2
