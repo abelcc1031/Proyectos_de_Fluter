@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fisioterapia</string> 
+    <string name="facebook_app_id">3135554333395394</string> 
+    <string name="fb_login_protocol_scheme">fb3135554333395394</string>
+</resources>

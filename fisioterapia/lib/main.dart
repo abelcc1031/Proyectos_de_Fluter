@@ -1,4 +1,7 @@
+import 'package:fisioterapia/providers/facebook_login_controller.dart';
+import 'package:fisioterapia/providers/google_login_controller.dart';
 import 'package:fisioterapia/providers/ui_provider.dart';
+import 'package:fisioterapia/screens/screens.dart';
 import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +28,8 @@ class MyApp extends StatelessWidget {
       providers: [
         // La instruccion que se va a ejecutar cuando no hay ninguna instancia del provider creado
         ChangeNotifierProvider(create: (_) => new UiProvider()),
+        ChangeNotifierProvider(create: (context) => GoogleSignInController(), child: LoginPage(),),
+        ChangeNotifierProvider(create: (context) => FacebookSignIncontroller(), child: FacebookLoginPage(),)
         
       ],
 

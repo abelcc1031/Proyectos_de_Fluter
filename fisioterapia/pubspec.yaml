@@ -33,6 +33,8 @@ dependencies:
   provider: ^6.0.1
   get:
   video_player: ^2.2.5
+  google_sign_in: ^5.1.1
+  flutter_facebook_auth: ^3.5.2
 
 dev_dependencies:
   flutter_test:

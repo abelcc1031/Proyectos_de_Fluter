@@ -93,17 +93,18 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                     ],
                   ),
                   SizedBox(height: 15,),
-                  Text('Legs Toning',
+                  Text('Nivel 1',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 18,
                       color: color.AppColor.secondPageTitleColor,
                     ),
                   ),
                   SizedBox(height: 5,),
-                  Text('And Glutes workout',
+                  Text('Ejercicios Sentados',
                     style: TextStyle(
                       fontSize: 25,
                       color: color.AppColor.secondPageTitleColor,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
 
@@ -239,7 +240,7 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                       children: [
                         SizedBox(width: 30,),
                         Text(
-                          'Circuit 1: LegsToning',
+                          'Nivel 1:',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -629,9 +630,12 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage(
+                    image: NetworkImage(
                       videoInfo[index]["thumbnail"],
                     ),
+                    
+                    // AssetImage(
+                    // ),
                     fit: BoxFit.cover,
                   ),
                 ),

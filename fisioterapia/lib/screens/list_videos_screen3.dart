@@ -93,14 +93,14 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                     ],
                   ),
                   SizedBox(height: 15,),
-                  Text('Legs Toning',
+                  Text('Nivel 3',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 18,
                       color: color.AppColor.secondPageTitleColor,
                     ),
                   ),
                   SizedBox(height: 5,),
-                  Text('And Glutes workout',
+                  Text('Ejercicios parados',
                     style: TextStyle(
                       fontSize: 25,
                       color: color.AppColor.secondPageTitleColor,
@@ -239,7 +239,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                       children: [
                         SizedBox(width: 30,),
                         Text(
-                          'Circuit 1: LegsToning',
+                          'Nivel 3: ',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -629,9 +629,14 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage(
+                    image: NetworkImage(
                       videoInfo[index]["thumbnail"],
+
                     ),
+                    
+                    // AssetImage(
+                    //   videoInfo[index]["thumbnail"],
+                    // ),
                     fit: BoxFit.cover,
                   ),
                 ),

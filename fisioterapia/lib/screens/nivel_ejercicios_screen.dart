@@ -80,6 +80,7 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                     style: TextStyle(
                       fontSize: 25,
                       color: color.AppColor.secondPageTitleColor,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
 
@@ -177,9 +178,9 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                   physics: BouncingScrollPhysics(),
                   children: [
                     SizedBox(height: 10,),
-                    NivelTarget(image: 'assets/pulsimetro.png', nivel: 'Nivel 1', categoria: 'Ejercicios sentados',rutaLista: 'list_videos_screen1',),
-                    NivelTarget(image: 'assets/pulsimetro.png', nivel: 'Nivel 2', categoria: 'Ejercicios boca arriba',rutaLista: 'list_videos_screen2',),
-                    NivelTarget(image: 'assets/pulsimetro.png', nivel: 'Nivel 3', categoria: 'Ejercicios parados',rutaLista: 'list_videos_screen3',),
+                    NivelTarget(image: 'https://cutt.ly/nRyXunN', nivel: 'Nivel 1', categoria: 'Ejercicios sentados',rutaLista: 'utilidades_sentados_screen',),
+                    NivelTarget(image: 'https://cutt.ly/KRyXkbA', nivel: 'Nivel 2', categoria: 'Ejercicios boca arriba',rutaLista: 'utilidades_echados_screen',),
+                    NivelTarget(image: 'https://cutt.ly/ZRyXRVa', nivel: 'Nivel 3', categoria: 'Ejercicios parados',rutaLista: 'utilidades_parado_screen',),
                     SizedBox(height: 50,),
 
                   ],
@@ -254,9 +255,12 @@ class NivelTarget extends StatelessWidget {
                 // color: Colors.redAccent.withOpacity(0.2),
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
                 image: DecorationImage(
-                  image: AssetImage(
+                  image: NetworkImage(
                     this.image
                   ),
+                  // AssetImage(
+                  //   this.image
+                  // ),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -284,7 +288,8 @@ class NivelTarget extends StatelessWidget {
                   RichText(text: TextSpan(
                     text: this.categoria,
                     style: TextStyle(
-                      color: color.AppColor.homePagePlanColor,
+                      color: color.AppColor.homePageTitle.withOpacity(0.6),
+                      fontWeight: FontWeight.w500,
                       fontSize: 16,
                     ),
                   )),

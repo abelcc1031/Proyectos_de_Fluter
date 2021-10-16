@@ -16,7 +16,7 @@ class NavDrawer extends StatelessWidget {
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: FadeInImage(
-                  image: NetworkImage('https://cutt.ly/FE91Vgw'), 
+                  image: NetworkImage('https://cutt.ly/ORiBMEJ'), 
                   // image: NetworkImage('https://cutt.ly/VEK3dGG'), 
                   placeholder: AssetImage('assets/background.jpg'),
                   width: 90,
@@ -62,7 +62,8 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(CustomIcons.recomendacion),
             title: Text('Recomendaciones'),
-            onTap: () {},
+            onTap: () {
+            },
           ),
           ListTile(
             leading: Icon(CustomIcons.guia),
@@ -84,7 +85,7 @@ class NavDrawer extends StatelessWidget {
             leading: Icon(CustomIcons.consideraciones),
             title: Text('Consideraciones'),
             onTap: () {
-              Navigator.pushNamed(context, 'video_info_screen');
+              Navigator.pushNamed(context, 'facebook_login_page');
             },
           ),
           Divider(),

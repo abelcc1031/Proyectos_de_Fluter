@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "899275520770",
+    "firebase_url": "https://fisioterapia-90c69-default-rtdb.firebaseio.com",
+    "project_id": "fisioterapia-90c69",
+    "storage_bucket": "fisioterapia-90c69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899275520770:android:4fb284c2fa0755da0ba01b",
+        "android_client_info": {
+          "package_name": "app.meedu.fisioterapia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899275520770-mdrnehbe85j14kerus6o8oqq4eme5qih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.meedu.fisioterapia",
+            "certificate_hash": "c93a63b31e293395bd8cef9032473587adfd4cb3"
+          }
+        },
+        {
+          "client_id": "899275520770-jpok1i3d9cmo1vnr8219a4gcrfr858q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXjQzBg_XsNI7GTI2OcDAReWIevuNNuis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899275520770-jpok1i3d9cmo1vnr8219a4gcrfr858q5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

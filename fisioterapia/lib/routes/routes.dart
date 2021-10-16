@@ -12,15 +12,25 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'card_pulsimetro'              : (_) => CardPulsimetro(),
     'perfil_screen'                : (_) => PerfilScreen(),
 
-    'list_videos_screen1'           : (_) => ListVideosScreen1(),
-    'list_videos_screen2'           : (_) => ListVideosScreen2(),
-    'list_videos_screen3'           : (_) => ListVideosScreen3(),
+    'list_videos_screen1'          : (_) => ListVideosScreen1(),
+    'list_videos_screen2'          : (_) => ListVideosScreen2(),
+    'list_videos_screen3'          : (_) => ListVideosScreen3(),
     'nivel_ejercicios_screen'      : (_) => NivelEjercicios(),
+    'utilidades_sentados_screen'   : (_) => UtilidadesSentadoScreen(),
+    'utilidades_echados_screen'    : (_) => UtilidadesEchadoScreen(),
+    'utilidades_parado_screen'     : (_) => UtilidadesParadoScreen(),
 
     'login_screen'                 : (_) => LoginScreen(),
     'menu_principal_screen'        : (_) => MenuPrincipalScreen(),
 
     'nav_drawer'                   : (_) => NavDrawer(),
+    'login_page'                   : (_) => LoginPage(),
+    'facebook_login_page'          : (_) => FacebookLoginPage(),
+
+
+
+
+
   };
 }
 
