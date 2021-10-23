@@ -1,7 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fisioterapia/services/auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
-class EscalaBorg3 extends StatelessWidget {
+class EscalaBorg3 extends StatefulWidget {
+
+  @override
+  State<EscalaBorg3> createState() => _EscalaBorg3State();
+}
+
+class _EscalaBorg3State extends State<EscalaBorg3> {
+  
+
+     
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +60,7 @@ class EscalaBorg3 extends StatelessWidget {
                               fontWeight: FontWeight.bold
                             ),
                           ),
+
                         ],
                       ),
                     ),
@@ -71,6 +86,7 @@ class EscalaBorg3 extends StatelessWidget {
                     NivelEsfuerzo3(numNivel: '9', textNivel: 'Máximo', colorNivel: Colors.red,),
                     NivelEsfuerzo3(numNivel: '10', textNivel: 'Extremo', colorNivel: Colors.red,),
                     SizedBox(height: 20,),
+                    
                   ],
                 ),
               )
@@ -82,7 +98,7 @@ class EscalaBorg3 extends StatelessWidget {
   }
 }
 
-class NivelEsfuerzo3 extends StatelessWidget {
+class NivelEsfuerzo3 extends StatefulWidget {
   
   final String numNivel;
   final String textNivel;
@@ -90,6 +106,35 @@ class NivelEsfuerzo3 extends StatelessWidget {
   const NivelEsfuerzo3({
     Key? key, required this.numNivel, required this.textNivel, required this.colorNivel,
   }) : super(key: key);
+
+  @override
+  State<NivelEsfuerzo3> createState() => _NivelEsfuerzo3State();
+}
+
+class _NivelEsfuerzo3State extends State<NivelEsfuerzo3> {
+
+  BorderRadius _border = BorderRadius.circular(8);
+
+  final firebase = FirebaseFirestore.instance;
+  Future<User?>obteniendoUsers(BuildContext _, AsyncSnapshot<User?> snapshot) async{
+    try {
+      if(snapshot.hasData) {
+        final usuario = snapshot.data;
+        print(usuario?.displayName);
+        await firebase
+        .collection("Usuario")
+        .doc(usuario?.email)
+        .update({
+          "Nivel Esfuerzo 3" : third_nivel_esfuerzo,
+
+        });
+      }
+    }catch(e) {
+      print(e);
+    }
+  }
+   
+  var third_nivel_esfuerzo = ""; 
 
   @override
   Widget build(BuildContext context) {
@@ -100,40 +145,72 @@ class NivelEsfuerzo3 extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              this.numNivel,
+              this.widget.numNivel,
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: this.colorNivel,
+                color: this.widget.colorNivel,
               ),
             )
           ),
           // const SizedBox(width: 100,),
           Expanded(
             flex: 4,
-            child: InkWell(
-              onTap: () {
-                debugPrint('1');
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                decoration: BoxDecoration(
-                  color: this.colorNivel,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  this.textNivel,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
+            child: FutureBuilder<User?>(
+            future: Auth.instance.user,
+            builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
+              if(snapshot.hasData){
+                final user = snapshot.data;
+                print(user?.displayName);
+                return InkWell(
+                  onTap: () {
+                    if(this.widget.textNivel != null) {
+                      third_nivel_esfuerzo = this.widget.textNivel;
+                      print(third_nivel_esfuerzo); 
+                      obteniendoUsers(_, snapshot);
+                    }
+                    setState(() {
+                      if(_border == BorderRadius.circular(8)) {
+                        _border = BorderRadius.circular(20);
+
+                      }else {
+                        _border = BorderRadius.circular(8);
+
+                      }
+
+                    });
+                    
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: this.widget.colorNivel,
+                      borderRadius: _border,
+                    ),
+                    child: Text(
+                      this.widget.textNivel,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                );
+              }else if(snapshot.hasError){
+                return Center(
+                  child: Text('Network error'),
+                );
+              }
+              return Center(
+                child: CupertinoActivityIndicator(),
+              );
+            }),
           )
         ],
       ),
     );
   }
 }
+
+

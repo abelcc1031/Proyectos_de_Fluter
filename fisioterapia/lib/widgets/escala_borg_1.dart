@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/services/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class EscalaBorg1 extends StatefulWidget {
@@ -13,29 +14,8 @@ class EscalaBorg1 extends StatefulWidget {
 
 class _EscalaBorg1State extends State<EscalaBorg1> {
   
-  final firebase = FirebaseFirestore.instance;
-  // Future<User?>obteniendoUsuario(BuildContext _, AsyncSnapshot<User?> snapshot) async{
-    registrandoUsaurio(){
-    
-      try {
-        // if(snapshot.hasData) {
-        //   final usuario = snapshot.data;
-        //   print(usuario?.displayName);
-          firebase
-          .collection("Usuario")
-          .doc()
-          .set({
-            "Email" :'abel',
-            "Nombre" :'abel',
-            "Nivel Esfuerzo 1" : 'abel',
 
-          });
-        // }
-      }catch(e) {
-        print(e);
-      }
-    }
- 
+     
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +39,7 @@ class _EscalaBorg1State extends State<EscalaBorg1> {
                           Container(
                             child: InkWell(
                               onTap: () {
-                                // Navigator.pop(context);
-                                registrandoUsaurio();
+                                Navigator.pop(context);
                               },
                               child: Container(
                                 padding: EdgeInsets.all(8),
@@ -81,38 +60,7 @@ class _EscalaBorg1State extends State<EscalaBorg1> {
                               fontWeight: FontWeight.bold
                             ),
                           ),
-                          
 
-                          FutureBuilder<User?>(
-                            future: Auth.instance.user,
-                            builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
-                              if(snapshot.hasData){
-                              final user = snapshot.data;
-                              print(user?.displayName);
-                              return Container(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ElevatedButton(
-                                        style: TextButton.styleFrom(backgroundColor: Colors.green),
-                                        onPressed: (){
-                                          /* create(); */
-                                          // obteniendoUsuario(_, snapshot);
-                                        },
-                                        child: Text('Enviar Datos'),
-                                      ),
-                                    ],
-                                  ),
-                              );
-                              }else if(snapshot.hasError){
-                                return Center(
-                                  child: Text('Network error'),
-                                ); 
-                              }
-                              return Center(
-                                child: CupertinoActivityIndicator(),
-                              );
-                          }),
                         ],
                       ),
                     ),
@@ -165,19 +113,31 @@ class NivelEsfuerzo extends StatefulWidget {
 
 class _NivelEsfuerzoState extends State<NivelEsfuerzo> {
 
+  BorderRadius _border = BorderRadius.circular(8);
+
   final firebase = FirebaseFirestore.instance;
-  create() async {
+  Future<User?>obteniendoUsers(BuildContext _, AsyncSnapshot<User?> snapshot) async{
     try {
-      await firebase.collection("users")
-      .doc()
-      .set({'Nombre' : 'quien'});
+      if(snapshot.hasData) {
+        final usuario = snapshot.data;
+        print(usuario?.displayName);
+        await firebase
+        .collection("Usuario")
+        .doc(usuario?.email)
+        .set({
+          "email" : usuario?.email,
+          "nombre" : usuario?.displayName,
+          "Nivel Esfuerzo 1" : first_nivel_esfuerzo,
+          "Nivel Esfuerzo 2" : "",
+          "Nivel Esfuerzo 3" : "",
+
+        });
+      }
     }catch(e) {
       print(e);
     }
   }
-
-  
-
+   
   var first_nivel_esfuerzo = ""; 
 
   @override
@@ -200,53 +160,56 @@ class _NivelEsfuerzoState extends State<NivelEsfuerzo> {
           // const SizedBox(width: 100,),
           Expanded(
             flex: 4,
-            child: InkWell(
-              onTap: () {
-                if(this.widget.textNivel != null) {
-                  first_nivel_esfuerzo = this.widget.textNivel;
-                  print(first_nivel_esfuerzo);
-
-
-                  final firebase = FirebaseFirestore.instance;
-                  Future<User?>obteniendoUsuario(BuildContext _, AsyncSnapshot<User?> snapshot) async{
-                    try {
-                      if(snapshot.hasData) {
-                        final usuario = snapshot.data;
-                        create();
-                        print(usuario?.displayName);
-                        await firebase
-                        .collection("Usuario")
-                        .doc()
-                        .set({
-                          "Email" :'abel',
-                          "Nombre" :'abel',
-                          "Nivel Esfuerzo 1" : 'abel',
-
-                        });
-                      }
-                    }catch(e) {
-                      print(e);
+            child: FutureBuilder<User?>(
+            future: Auth.instance.user,
+            builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
+              if(snapshot.hasData){
+                final user = snapshot.data;
+                print(user?.displayName);
+                return InkWell(
+                  onTap: () {
+                    if(this.widget.textNivel != null) {
+                      first_nivel_esfuerzo = this.widget.textNivel;
+                      print(first_nivel_esfuerzo); 
+                      obteniendoUsers(_, snapshot);
                     }
-                  }
-                }
-                
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                decoration: BoxDecoration(
-                  color: this.widget.colorNivel,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  this.widget.textNivel,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
+                    setState(() {
+                      if(_border == BorderRadius.circular(8)) {
+                        _border = BorderRadius.circular(20);
+
+                      }else {
+                        _border = BorderRadius.circular(8);
+
+                      }
+
+                    });
+                    
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: this.widget.colorNivel,
+                      borderRadius: _border,
+                    ),
+                    child: Text(
+                      this.widget.textNivel,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                );
+              }else if(snapshot.hasError){
+                return Center(
+                  child: Text('Network error'),
+                );
+              }
+              return Center(
+                child: CupertinoActivityIndicator(),
+              );
+            }),
           )
         ],
       ),
@@ -255,37 +218,3 @@ class _NivelEsfuerzoState extends State<NivelEsfuerzo> {
 }
 
 
-
-
-class AddUser extends StatelessWidget {
-  final String fullName;
-  final String company;
-  final int age;
-
-  AddUser(this.fullName, this.company, this.age);
-
-  @override
-  Widget build(BuildContext context) {
-    // Create a CollectionReference called users that references the firestore collection
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-    Future<void> addUser() {
-      // Call the user's CollectionReference to add a new user
-      return users
-          .add({
-            'full_name': fullName, // John Doe
-            'company': company, // Stokes and Sons
-            'age': age // 42
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    }
-
-    return TextButton(
-      onPressed: addUser,
-      child: Text(
-        "Add User",
-      ),
-    );
-  }
-}

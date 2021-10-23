@@ -591,7 +591,7 @@ class _GuiaPulsimetroState extends State<GuiaPulsimetro> {
           SizedBox(height: 20,),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, 'menu_principal_screen');
+              Navigator.pushNamed(context, 'medir_saturacion_freceuncia');
             },
             child: Container(
               alignment: Alignment.topCenter,

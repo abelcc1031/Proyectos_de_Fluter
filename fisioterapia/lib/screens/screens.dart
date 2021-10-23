@@ -18,3 +18,6 @@ export 'package:fisioterapia/screens/utilidades_echado_screen.dart';
 export 'package:fisioterapia/screens/utilidades_parado_screen.dart';
 export 'package:fisioterapia/screens/utilidades_sentado_screen.dart';
 
+export 'package:fisioterapia/screens/medir_saturacion_frecuencia_screen.dart';
+
+

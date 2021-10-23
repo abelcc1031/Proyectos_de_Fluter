@@ -588,34 +588,34 @@ class _GuiaAppState extends State<GuiaApp> {
             ),
           ),
 
-          SizedBox(height: 20,),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, 'menu_principal_screen');
-            },
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: color.AppColor.gradientFirst.withOpacity(0.75),
-                  borderRadius: BorderRadius.circular(10),
+          // SizedBox(height: 20,),
+          // InkWell(
+          //   onTap: () {
+          //     Navigator.pushNamed(context, 'menu_principal_screen');
+          //   },
+          //   child: Container(
+          //     alignment: Alignment.topCenter,
+          //     child: Container(
+          //       width: double.infinity,
+          //       decoration: BoxDecoration(
+          //         color: color.AppColor.gradientFirst.withOpacity(0.75),
+          //         borderRadius: BorderRadius.circular(10),
             
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Text('Medir SpO2 y FC',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          //         child: Text('Medir SpO2 y FC',
+          //           style: TextStyle(
+          //             fontSize: 17,
+          //             color: Colors.white,
+          //             fontWeight: FontWeight.bold,
+          //           ),
+          //           textAlign: TextAlign.center,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
 
           
 
