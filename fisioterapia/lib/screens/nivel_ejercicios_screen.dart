@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fisioterapia/screens/list_videos_screen1.dart';
+import 'package:fisioterapia/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,8 +71,13 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      Icon(Icons.info_outline, size: 15,
-                       color: color.AppColor.secondPageIconColor,
+                      InkWell(
+                        onTap: (){
+                          Auth.instance.logOut(context);
+                        },
+                        child: Icon(Icons.info_outline, size: 15,
+                         color: color.AppColor.secondPageIconColor,
+                        ),
                       ),
                     ],
                   ),

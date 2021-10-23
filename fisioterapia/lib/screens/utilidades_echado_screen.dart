@@ -12,6 +12,7 @@ class UtilidadesEchadoScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           // color: Colors.red,
+          color: Colors.white,
         ),
         child: ListView(
           physics: BouncingScrollPhysics(),

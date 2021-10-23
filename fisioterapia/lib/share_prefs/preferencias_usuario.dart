@@ -54,7 +54,7 @@ class PreferenciasUsuario {
   // GET y SET de la Ultima pagina
 
   String get ultimaPagina {
-    return _prefs.getString('ultimaPagina') ?? 'login_screen';
+    return _prefs.getString('ultimaPagina') ?? 'checking';
   }
 
   set ultimaPagina(String value) {

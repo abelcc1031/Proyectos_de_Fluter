@@ -1,21 +1,22 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fisioterapia/custom_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import '../theme/colors.dart' as color;
 
-class ListVideosScreen3 extends StatefulWidget {
-  ListVideosScreen3({Key? key}) : super(key: key);
+class GuiaApp extends StatefulWidget {
+  GuiaApp({Key? key}) : super(key: key);
 
   @override
-  _ListVideosScreen3State createState() => _ListVideosScreen3State();
+  _GuiaAppState createState() => _GuiaAppState();
 }
 
-class _ListVideosScreen3State extends State<ListVideosScreen3> {
+class _GuiaAppState extends State<GuiaApp> {
 
-  List videoInfo = [];
+  List videoguia = [];
   bool _playArea = false;
   VideoPlayerController? _controller;
   bool _isPlaying = false;
@@ -23,10 +24,11 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
   int _isPlayingIndex = -1;
 
   _initData() async{
-    await DefaultAssetBundle.of(context).loadString("json/videoinfo.json").then((value) {
+    await DefaultAssetBundle.of(context).loadString("json/guias.json").then((value) {
       setState(() {
-        videoInfo = json.decode(value);
-        videoInfo = videoInfo[2];
+        videoguia = json.decode(value);
+        videoguia = videoguia[1];
+        debugPrint(videoguia.toString());
       });
     });
   }
@@ -87,128 +89,41 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      // Icon(Icons.info_outline, size: 15,
-                      //  color: color.AppColor.secondPageIconColor,
-                      // ),
+                      Icon(Icons.info_outline, size: 15,
+                       color: color.AppColor.secondPageIconColor,
+                      ),
+                    ],
+                  ),
+                  
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, 'escala_borg_3');
-                        },
-                        child: Container(
-                          alignment: Alignment.topCenter,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: color.AppColor.gradientFirst.withOpacity(0.75),
-                              borderRadius: BorderRadius.circular(10),
-                        
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                              child: Text('Escala de Borg',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
+                  SizedBox(height: 10,),
+                  Container(
+                    width: double.infinity,
+                    // color: Colors.red,
+                    child: Column(
+                      children: [
+                        Text(
+                          videoguia[0]["title"],
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[50],
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 15,),
-                  Text('Nivel 3',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: color.AppColor.secondPageTitleColor,
+                        SizedBox(height: 20,),
+                        Text(
+                          videoguia[0]["time"],
+                          style: TextStyle(
+                            color: Colors.grey[50],
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: 5,),
-                  Text('Ejercicios parados',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: color.AppColor.secondPageTitleColor,
-                    ),
-                  ),
+                  )
 
-                  SizedBox(height: 30,),
-
-                  Row(
-                    children: [
-                      Container(
-                        width: 90,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                            colors: [
-                              color.AppColor.secondPageContainerGradient1stColor,
-                              color.AppColor.secondPageContainerGradient2ndColor,
-                            ],
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                          )
-                        ),
-
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.timer,
-                              size: 20,
-                              color: color.AppColor.secondPageIconColor,
-                            ), SizedBox(width: 5,),
-                            Text(
-                              '68 min',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: color.AppColor.secondPageIconColor,
-                              ),
-                            )
-                          ],
-                        ),
-
-                      ),
-
-                      SizedBox(width: 20,),
-
-                      Container(
-                        width: 180,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.blue.shade900,
-                              Colors.blueAccent,
-                            ],
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                          )
-                        ),
-
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.handyman_outlined,
-                              size: 20,
-                              color: color.AppColor.secondPageIconColor,
-                            ), SizedBox(width: 5,),
-                            Text(
-                              'Resistend band',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: color.AppColor.secondPageIconColor,
-                              ),
-                            )
-                          ],
-                        ),
-
-                      )
-                    ],
-                  ),
+                  
 
                   
                 ],
@@ -217,7 +132,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
               child: Column(
                 children: [
                   Container(
-                    height: 70,
+                    height: 100,
                     padding: EdgeInsets.only(top: 20, left: 30, right: 30),
                     child: Row(
                       children: [
@@ -233,40 +148,10 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                           ),
                         ),
                         Expanded(child: Container()),
-                        // Icon(Icons.info_outline,
-                        //   size: 20,
-                        //   color: color.AppColor.secondPageTopIconColor,
-                        // )
-
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, 'escala_borg_3');
-                            },
-                            child: Container(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: color.AppColor.gradientFirst.withOpacity(0.75),
-                                  borderRadius: BorderRadius.circular(10),
-                            
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                  child: Text('Escala de Borg',
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        Icon(Icons.info_outline,
+                          size: 20,
+                          color: color.AppColor.secondPageTopIconColor,
+                        )
 
                         
                       ],
@@ -290,47 +175,14 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
 
                   children: [
 
-                    SizedBox(height: 30,),
-
-                    Row( //Circuit 1
-                      children: [
-                        SizedBox(width: 30,),
-                        Text(
-                          'Nivel 3: ',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: color.AppColor.circuitsColor,
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        Row(
-                          children: [
-                            Icon(Icons.loop, size: 30, color: color.AppColor.loopColor,),
-                            SizedBox(width: 10),
-                            Text(
-                              '3 sets',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: color.AppColor.setsColor,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                        SizedBox(width: 20,),
-                      ],
-                    ),
-
-                    SizedBox(height: 5,),
+                    SizedBox(height: 20,),
                     Expanded(
                       child: _listView(),
                     ),
-
-                    SizedBox(height: 5,),
-
-
+                    // SizedBox(height: 30,),
                   ],
+
+                  
                 ),
               )
             )
@@ -449,7 +301,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
               TextButton(
                 onPressed: () async {
                   final index = _isPlayingIndex -1;
-                  if(index >= 0 && videoInfo.length >= 0 ) {
+                  if(index >= 0 && videoguia.length >= 0 ) {
                     _initializeVideo(index);
                   }else {
                     Get.snackbar("Video", "",
@@ -500,7 +352,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
               TextButton(
                 onPressed: () async {
                   final index = _isPlayingIndex + 1;
-                  if(index <= videoInfo.length - 1) {
+                  if(index <= videoguia.length - 1) {
                     _initializeVideo(index);
                   }else {
                     Get.snackbar("Video List", "",
@@ -622,7 +474,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
   }
 
   _initializeVideo(int index) async {
-    final controller = VideoPlayerController.network(videoInfo[index]["videoUrl"]);
+    final controller = VideoPlayerController.network(videoguia[index]["videoUrl"]);
     final old = _controller;
     _controller = controller;
 
@@ -655,7 +507,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
   _listView() {
     return ListView.builder(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-      itemCount: videoInfo.length,
+      itemCount: videoguia.length,
       itemBuilder: (_, int index) {
         return GestureDetector(
           onTap: () {
@@ -675,14 +527,13 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
   
   _buildCard(int index) {
     return Container(
-      height: 135,
-      // color: Colors.redAccent,
+      height: 141,
       child: Column(
         children: [
           
           Container(
             decoration: BoxDecoration(
-            color: Colors.grey[50],
+            color: Colors.grey[100],
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -693,6 +544,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
               ),
             ],
             ),
+
             child: Row(//tarjeta de los videos
               children: [
                 Container( // imagen de video
@@ -702,84 +554,71 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: NetworkImage(
-                        videoInfo[index]["thumbnail"],
-
+                        videoguia[index]["thumbnail"],
                       ),
                       
                       // AssetImage(
-                      //   videoInfo[index]["thumbnail"],
                       // ),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
 
-                SizedBox(width: 10,),
+                SizedBox(width: 20,),
 
-                Column( //Descripcion del video
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      videoInfo[index]["title"],
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Padding(
-                      padding: EdgeInsets.only(top: 3),
-                      child: Text(
-                        videoInfo[index]["time"],
+                Container(
+                  // color: Colors.red,
+                  width: 180,
+                  child: Column( //Descripcion del video
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        videoguia[index]["title"],
                         style: TextStyle(
-                          color: Colors.grey[500],
-                        ),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),textAlign: TextAlign.center,
                       ),
-                    )
-                  ],
+                      SizedBox(height: 10,),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 18,),
-          Row(
-            children: [
-              Container( // tiempo restante del video
-                width: 80,
-                height: 20,
+
+          SizedBox(height: 20,),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, 'menu_principal_screen');
+            },
+            child: Container(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xFFeaeefc),
+                  color: color.AppColor.gradientFirst.withOpacity(0.75),
                   borderRadius: BorderRadius.circular(10),
+            
                 ),
-                child: Center(
-                  child: Text(
-                    '15s rest', style: TextStyle(
-                      color: Color(0xFF839fed),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text('Medir SpO2 y FC',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  for(int i = 0; i<70; i++)
-                  i.isEven?Container(
-                    width: 3,
-                    height: 1,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF839fed),
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ):Container(
-                    width: 3,
-                    height: 1,
-                    color: Colors.white,
-                  )
-                ],
-              )
+            ),
+          ),
 
-            ],
-          )
+          
+
         ],
       ),
     );

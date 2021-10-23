@@ -1,5 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fisioterapia/services/services.dart';
 import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,26 +16,50 @@ import 'package:fisioterapia/theme/theme.dart';
 
 class MenuPrincipalScreen extends StatelessWidget {
 
-  final prefs = new PreferenciasUsuario();
+  // final prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
 
-    prefs.ultimaPagina = 'menu_principal_screen';
+    // prefs.ultimaPagina = 'menu_principal_screen';
 
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: DeliveryColors.background,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Text('Hola Abel',),
-            ),
-          ],
-        ),
+        title: FutureBuilder<User?>(
+          future: Auth.instance.user,
+          builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
+            if(snapshot.hasData){
+              final user = snapshot.data;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Text(
+                      'Hola' + ' ' +
+                      _getNombre(user?.displayName),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white, 
+                          fontWeight: FontWeight.w400,
+                        ),
+                    ),
+                  ),
+                ],
+              );
+            }else if(snapshot.hasError){
+            return Center(
+              child: Text('Network error'),
+            );
+          }
+          return Center(
+            child: CupertinoActivityIndicator(),
+          );
+        }),
+ 
       ),
 
 
@@ -40,6 +67,17 @@ class MenuPrincipalScreen extends StatelessWidget {
 
       bottomNavigationBar: CustomBottonNavigation(),
     );
+  }
+  String _getNombre(String? displayName) {
+    final List<String>? nombre = displayName!.split(" ");
+    String primerNombre = "";
+    if(nombre!.length>0){
+      primerNombre = nombre[0];
+    }
+    
+
+    return primerNombre;
+
   }
 }
 

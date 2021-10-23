@@ -1,8 +1,11 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/custom_icons.dart';
+import 'package:fisioterapia/services/services.dart';
 import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:fisioterapia/theme/theme.dart';
 import 'package:fisioterapia/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,13 +18,13 @@ class CardFisioterapeuta extends StatefulWidget {
 
 class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
 
-  final prefs = new PreferenciasUsuario();
+  // final prefs = new PreferenciasUsuario();
   
   // double height, width;
   @override
   Widget build(BuildContext context) {
 
-    prefs.ultimaPagina = 'card_fisioterapueta';
+    // prefs.ultimaPagina = 'card_fisioterapueta';
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -29,16 +32,38 @@ class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
       drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: DeliveryColors.background,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Text('Hola Abel',),
-            ),
-          ],
-        ),
+        title: FutureBuilder<User?>(
+          future: Auth.instance.user,
+          builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
+            if(snapshot.hasData){
+              final user = snapshot.data;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Text(
+                      'Hola' + ' ' +
+                      _getNombre(user?.displayName),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white, 
+                          fontWeight: FontWeight.w400,
+                        ),
+                    ),
+                  ),
+                ],
+              );
+            }else if(snapshot.hasError){
+            return Center(
+              child: Text('Network error'),
+            );
+          }
+          return Center(
+            child: CupertinoActivityIndicator(),
+          );
+        }),
       ),
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
@@ -49,6 +74,18 @@ class _CardFisioterapeutaState extends State<CardFisioterapeuta> {
         ],
      ),
    );
+  }
+
+  String _getNombre(String? displayName) {
+    final List<String>? nombre = displayName!.split(" ");
+    String primerNombre = "";
+    if(nombre!.length>0){
+      primerNombre = nombre[0];
+    }
+    
+
+    return primerNombre;
+
   }
 }
 
@@ -192,11 +229,16 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                     color: Colors.red,
                   ),
-                  child: Icon(
-                    CustomIcons.correo,
-                    color: Colors.white,
-                    size: 20.0,
-                    semanticLabel: 'Correo',
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'login_page');
+                    },
+                    child: Icon(
+                      CustomIcons.correo,
+                      color: Colors.white,
+                      size: 20.0,
+                      semanticLabel: 'Correo',
+                    ),
                   ),
                 ),
                 Container(
@@ -220,11 +262,16 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                     color: Colors.blue.shade700,
                   ),
-                  child: Icon(
-                    CustomIcons.facebook,
-                    color: Colors.white,
-                    size: 24.0,
-                    semanticLabel: 'Facebook',
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'facebook_login_page');
+                    },
+                    child: Icon(
+                      CustomIcons.facebook,
+                      color: Colors.white,
+                      size: 24.0,
+                      semanticLabel: 'Facebook',
+                    ),
                   ),
                 ),
               ],

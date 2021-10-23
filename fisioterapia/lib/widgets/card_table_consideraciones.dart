@@ -1,8 +1,9 @@
 import 'dart:ui';
+import 'package:fisioterapia/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 
-class CardTable extends StatelessWidget {
+class CardTableConsideraciones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -10,20 +11,32 @@ class CardTable extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            _SingleCard( imagen: AssetImage('assets/pulsimetro.png'), text: 'Guía del pulsímetro', ruta: 'guia_pulsimetro_screen',),
-            _SingleCard( imagen: AssetImage('assets/ejercicios.png'), text: 'Ejercicios respiratorios', ruta: 'nivel_ejercicios_screen',),
+            _SingleCard( imagen: NetworkImage('https://cutt.ly/wRaxoOK'), text: 'Si presenta opresión y/o dolor en el pecho',),
+            _SingleCard( imagen: NetworkImage('https://cutt.ly/DRaxk1r'), text: 'Si presenta sensación de falta de aire',),
           ]
         ),
         TableRow(
           children: [
-            _SingleCard(imagen: AssetImage('assets/recomendaciones.png'),  text: 'Recomendaciones para los ejercicios', ruta: 'recomendaciones_ejercicios_screen',),
-            _SingleCard(imagen: AssetImage('assets/manual.png'),  text: 'Guía de uso del App', ruta: 'guia_app_screen',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/mRaxzWm'),  text: 'Si presenta sensación de desvanecimiento',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/URaxcdu'),  text: 'Si presenta tos severa',),
           ]
         ),
         TableRow(
           children: [
-            _SingleCard(imagen: AssetImage('assets/contacto.png'),  text: 'Fisioterapeuta', ruta: 'card_fisioterapueta',),
-            _SingleCard(imagen: AssetImage('assets/consideraciones.png'),  text: 'Consideraciones para detener los ejercicios', ruta: 'consideracion_ejercicios_screen',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/aRaxbvX'),  text: 'Si presenta dolor de cabeza',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/LRaxnBT'),  text: 'Si presenta fiebre por encima de 37 grados',),
+          ]
+        ),
+        TableRow(
+          children: [
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/BRaxQFt'),  text: 'Si presenta visión poco clara',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/iRaxW5t'),  text: 'Fatiga que no ceden con el descanso',),
+          ]
+        ),
+        TableRow(
+          children: [
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/lRaxTqr'),  text: 'Si presenta palpitaciones',),
+            _SingleCard(imagen: NetworkImage('https://cutt.ly/mRaxT7l'),  text: 'Sudoración anormal excesiva',),
           ]
         ),
       ],
@@ -34,15 +47,13 @@ class CardTable extends StatelessWidget {
 class _SingleCard extends StatelessWidget {
   
   final String text;
-  final AssetImage imagen;
-  final String ruta;
+  final NetworkImage imagen;
 
-  const _SingleCard({Key? key, required this.imagen, required this.text, required this.ruta}) : super(key: key);
+  const _SingleCard({Key? key, required this.imagen, required this.text,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
     return InkWell(
-      onTap: () {Navigator.pushNamed(context, this.ruta);},
       splashColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
       highlightColor: Colors.red,
       child: _CardBackground(
@@ -57,7 +68,7 @@ class _SingleCard extends StatelessWidget {
                 this.text, 
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white, 
+                  color: DeliveryColors.background, 
                   fontSize: 11
                 ),
               ),
@@ -90,7 +101,8 @@ class _CardBackground extends StatelessWidget {
           child: Container(
             height: 180,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(62, 66, 107, 0.7),
+              // color: Color.fromRGBO(62, 66, 107, 0.7),
+              color: Colors.white.withOpacity(0.9),
               borderRadius: BorderRadius.circular(20)
             ),
             child: this.child,

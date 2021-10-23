@@ -87,8 +87,35 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      Icon(Icons.info_outline, size: 15,
-                       color: color.AppColor.secondPageIconColor,
+                      // Icon(Icons.info_outline, size: 15,
+                      //  color: color.AppColor.secondPageIconColor,
+                      // ),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, 'escala_borg_1');
+                        },
+                        child: Container(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: color.AppColor.gradientFirst.withOpacity(0.75),
+                              borderRadius: BorderRadius.circular(10),
+                        
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              child: Text('Escala de Borg',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -191,7 +218,8 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
               child: Column(
                 children: [
                   Container(
-                    height: 100,
+                    // color: Colors.red,
+                    height: 70,
                     padding: EdgeInsets.only(top: 20, left: 30, right: 30),
                     child: Row(
                       children: [
@@ -207,10 +235,40 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                           ),
                         ),
                         Expanded(child: Container()),
-                        Icon(Icons.info_outline,
-                          size: 20,
-                          color: color.AppColor.secondPageTopIconColor,
-                        )
+                        // Icon(Icons.info_outline,
+                        //   size: 20,
+                        //   color: color.AppColor.secondPageTopIconColor,
+                        // )
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, 'escala_borg_2');
+                            },
+                            child: Container(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: color.AppColor.gradientFirst.withOpacity(0.75),
+                                  borderRadius: BorderRadius.circular(10),
+                            
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                  child: Text('Escala de Borg',
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
 
                         
                       ],
@@ -266,10 +324,42 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                       ],
                     ),
 
-                    SizedBox(height: 20,),
+                    SizedBox(height: 5,),
+
                     Expanded(
                       child: _listView(),
                     ),
+
+                    // InkWell(
+                    //   onTap: () {
+                    //     Navigator.pushNamed(context, 'menu_principal_screen');
+                    //   },
+                    //   child: Container(
+                    //     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    //     alignment: Alignment.topCenter,
+                    //     child: Container(
+                    //       width: double.infinity,
+                    //       decoration: BoxDecoration(
+                    //         color: color.AppColor.gradientFirst.withOpacity(0.75),
+                    //         borderRadius: BorderRadius.circular(10),
+                      
+                    //       ),
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    //         child: Text('Medir SpO2 y FC',
+                    //           style: TextStyle(
+                    //             fontSize: 17,
+                    //             color: Colors.white,
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
+                    SizedBox(height: 5,),
 
 
                   ],
@@ -622,51 +712,65 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
       child: Column(
         children: [
           
-          Row(//tarjeta de los videos
-            children: [
-              Container( // imagen de video
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      videoInfo[index]["thumbnail"],
-                    ),
-                    
-                    // AssetImage(
-                    // ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-
-              SizedBox(width: 10,),
-
-              Column( //Descripcion del video
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    videoInfo[index]["title"],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  Padding(
-                    padding: EdgeInsets.only(top: 3),
-                    child: Text(
-                      videoInfo[index]["time"],
-                      style: TextStyle(
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  )
-                ],
+          Container(
+            decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(2, 6), // changes position of shadow
               ),
             ],
+            ),
+            child: Row(//tarjeta de los videos
+              children: [
+                Container( // imagen de video
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        videoInfo[index]["thumbnail"],
+                      ),
+                      
+                      // AssetImage(
+                      // ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+
+                SizedBox(width: 10,),
+
+                Column( //Descripcion del video
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      videoInfo[index]["title"],
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: EdgeInsets.only(top: 3),
+                      child: Text(
+                        videoInfo[index]["time"],
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 18,),
           Row(
@@ -705,7 +809,9 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
               )
 
             ],
-          )
+          ),
+
+          
         ],
       ),
     );

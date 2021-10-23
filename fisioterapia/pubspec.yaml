@@ -31,10 +31,16 @@ dependencies:
   google_fonts: ^2.1.0
   shared_preferences: ^2.0.8
   provider: ^6.0.1
+  http: ^0.13.4
+  flutter_secure_storage: ^4.2.1
   get:
   video_player: ^2.2.5
+  firebase_auth: ^3.1.3
   google_sign_in: ^5.1.1
   flutter_facebook_auth: ^3.5.2
+  firebase_core: ^1.7.0
+  after_layout: ^1.1.0
+  cloud_firestore: ^2.5.4
 
 dev_dependencies:
   flutter_test:

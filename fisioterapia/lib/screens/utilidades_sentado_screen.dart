@@ -12,6 +12,7 @@ class UtilidadesSentadoScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           // color: Colors.red,
+          color: Colors.white,
         ),
         child: ListView(
           physics: BouncingScrollPhysics(),
@@ -52,7 +53,7 @@ class UtilidadesSentadoScreen extends StatelessWidget {
             SizedBox(height: 30,),
             InfoUtilidades(info: 'Para los siguientes ejercicios se necesitan una silla segura con respaldar.',),
             SizedBox(height: 30,),
-            InfoUtilidades(info: 'Para los siguientes ejercicios se necesitan una silla segura con respaldar.',),
+            InfoUtilidades(info: 'Puede realizar los siguientes ejercicios 2 veces al dia, 2 series de 10 repeticiones.',),
             SizedBox(height: 30,),
 
             Container(
