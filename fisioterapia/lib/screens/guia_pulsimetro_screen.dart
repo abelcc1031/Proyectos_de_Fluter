@@ -1,9 +1,15 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/custom_icons.dart';
+import 'package:fisioterapia/providers/saturacion_frecuencia_provider.dart';
+import 'package:fisioterapia/services/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import '../theme/colors.dart' as color;
 
@@ -15,6 +21,7 @@ class GuiaPulsimetro extends StatefulWidget {
 }
 
 class _GuiaPulsimetroState extends State<GuiaPulsimetro> {
+
 
   List videoguia = [];
   bool _playArea = false;
@@ -50,6 +57,10 @@ class _GuiaPulsimetroState extends State<GuiaPulsimetro> {
   
   @override
   Widget build(BuildContext context) {
+
+    
+
+
     return Scaffold(
       body: Container(
         decoration: _playArea==false?BoxDecoration(
@@ -589,9 +600,12 @@ class _GuiaPulsimetroState extends State<GuiaPulsimetro> {
           ),
 
           SizedBox(height: 20,),
+
+
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, 'medir_saturacion_freceuncia');
+ 
+              Navigator.pushNamed(context, 'saturacion_frecuencia_antes');
             },
             child: Container(
               alignment: Alignment.topCenter,
@@ -616,6 +630,7 @@ class _GuiaPulsimetroState extends State<GuiaPulsimetro> {
               ),
             ),
           ),
+          
 
           
 

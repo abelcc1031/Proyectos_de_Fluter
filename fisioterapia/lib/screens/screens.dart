@@ -20,4 +20,10 @@ export 'package:fisioterapia/screens/utilidades_sentado_screen.dart';
 
 export 'package:fisioterapia/screens/medir_saturacion_frecuencia_screen.dart';
 
+export 'package:fisioterapia/screens/saturacion_frecuencia_antes.dart';
+
+export 'package:fisioterapia/screens/saturacion_frecuencia_despues.dart';
+
+export 'package:fisioterapia/screens/historial_frecuencia_saturacion.dart';
+
 

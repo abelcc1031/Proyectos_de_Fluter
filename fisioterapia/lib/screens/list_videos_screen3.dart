@@ -161,7 +161,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                               color: color.AppColor.secondPageIconColor,
                             ), SizedBox(width: 5,),
                             Text(
-                              '68 min',
+                              '5 min',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: color.AppColor.secondPageIconColor,
@@ -325,6 +325,35 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                     SizedBox(height: 5,),
                     Expanded(
                       child: _listView(),
+                    ),
+
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'saturacion_frecuencia_despues');
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: color.AppColor.gradientFirst.withOpacity(0.75),
+                            borderRadius: BorderRadius.circular(10),
+                      
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            child: Text('Medir SpO2 y FC',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
 
                     SizedBox(height: 5,),
@@ -709,7 +738,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                       // AssetImage(
                       //   videoInfo[index]["thumbnail"],
                       // ),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -754,7 +783,7 @@ class _ListVideosScreen3State extends State<ListVideosScreen3> {
                 ),
                 child: Center(
                   child: Text(
-                    '15s rest', style: TextStyle(
+                    '', style: TextStyle(
                       color: Color(0xFF839fed),
                     ),
                   ),

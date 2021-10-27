@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/services/auth.dart';
+import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,9 +13,7 @@ class EscalaBorg1 extends StatefulWidget {
   State<EscalaBorg1> createState() => _EscalaBorg1State();
 }
 
-class _EscalaBorg1State extends State<EscalaBorg1> {
-  
-
+class _EscalaBorg1State extends State<EscalaBorg1> {  
      
 
   @override
@@ -113,7 +112,19 @@ class NivelEsfuerzo extends StatefulWidget {
 
 class _NivelEsfuerzoState extends State<NivelEsfuerzo> {
 
+  late bool _border1;
+  final prefs = new PreferenciasUsuario();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _border1 = prefs.border1;
+
+  }
+
   BorderRadius _border = BorderRadius.circular(8);
+  BorderRadius _bordertwo = BorderRadius.circular(20);
 
   final firebase = FirebaseFirestore.instance;
   Future<User?>obteniendoUsers(BuildContext _, AsyncSnapshot<User?> snapshot) async{
@@ -172,8 +183,10 @@ class _NivelEsfuerzoState extends State<NivelEsfuerzo> {
                       first_nivel_esfuerzo = this.widget.textNivel;
                       print(first_nivel_esfuerzo); 
                       obteniendoUsers(_, snapshot);
+                      // prefs.border1 = true;
                     }
                     setState(() {
+
                       if(_border == BorderRadius.circular(8)) {
                         _border = BorderRadius.circular(20);
 

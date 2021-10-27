@@ -1,4 +1,6 @@
 
+
+import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/custom_icons.dart';
 import 'package:fisioterapia/services/services.dart';
@@ -164,7 +166,8 @@ class ImagenFisioterapeuta extends StatelessWidget {
   }
 }
 
-class DescripcionFisioterapeuta extends StatelessWidget {
+class DescripcionFisioterapeuta extends StatefulWidget {
+
   const DescripcionFisioterapeuta({
     Key? key,
     required this.height,
@@ -173,9 +176,30 @@ class DescripcionFisioterapeuta extends StatelessWidget {
   final double height;
 
   @override
+  State<DescripcionFisioterapeuta> createState() => _DescripcionFisioterapeutaState();
+}
+
+class _DescripcionFisioterapeutaState extends State<DescripcionFisioterapeuta> {
+
+  void launchWhatsapp({required number, required message}) async {
+    String url = "whatsapp://send?phone=$number&text=$message";
+
+    await canLaunch(url) ? launch(url) : print('No se puede abrir Whatsapp');
+  }
+  Future<void>_makePhoneCall(String url) async {
+    if(await canLaunch(url)) {
+      await launch(url);
+    }else {
+      throw "Could not launch $url";
+    }
+  }
+
+  
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * .45,
+      height: widget.height * .45,
       decoration: BoxDecoration(
         boxShadow: [
           boxShadow2
@@ -215,11 +239,17 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                     color: Colors.green,
                   ),
-                  child: Icon(
-                    CustomIcons.phone,
-                    color: Colors.white,
-                    size: 24.0,
-                    semanticLabel: 'Celular',
+                  child: InkWell(
+                    onTap: () => setState(() {
+                      _makePhoneCall('tel:923519748');
+                      
+                    }),
+                    child: Icon(
+                      CustomIcons.phone,
+                      color: Colors.white,
+                      size: 24.0,
+                      semanticLabel: 'Celular',
+                    ),
                   ),
                 ),
                 Container(
@@ -230,8 +260,15 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     color: Colors.red,
                   ),
                   child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'login_page');
+                    onTap: () async {
+                      final toEmail = 'abelcc1031@gmail.com';
+                      final subject = 'Información';
+                      final message = 'Hola, quisiera información sobre tratamiento personalizado';
+                      final url = 'mailto:$toEmail?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(message)}';
+
+                      if(await canLaunch(url)) {
+                        await launch(url);
+                      }
                     },
                     child: Icon(
                       CustomIcons.correo,
@@ -241,6 +278,7 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     ),
                   ),
                 ),
+                
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -248,11 +286,16 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                     color: Colors.green,
                   ),
-                  child: Icon(
-                    CustomIcons.whatsapp,
-                    color: Colors.white,
-                    size: 24.0,
-                    semanticLabel: 'Whatsapp',
+                  child: InkWell(
+                    onTap: () {
+                      launchWhatsapp(number: "+51923519748", message: 'Hola, quisiera tratamiento personalizado');
+                    },
+                    child: Icon(
+                      CustomIcons.whatsapp,
+                      color: Colors.white,
+                      size: 24.0,
+                      semanticLabel: 'Whatsapp',
+                    ),
                   ),
                 ),
                 Container(
@@ -263,8 +306,8 @@ class DescripcionFisioterapeuta extends StatelessWidget {
                     color: Colors.blue.shade700,
                   ),
                   child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'facebook_login_page');
+                    onTap: () =>  {
+                       launch('https://web.facebook.com/groups/965146970991987')
                     },
                     child: Icon(
                       CustomIcons.facebook,

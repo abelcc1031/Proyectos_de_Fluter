@@ -18,6 +18,9 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'utilidades_echados_screen'          : (_) => UtilidadesEchadoScreen(),
     'utilidades_parado_screen'           : (_) => UtilidadesParadoScreen(),
     'medir_saturacion_freceuncia'        : (_) => MedirSaturacionFrecuenciaScreen(),
+    'saturacion_frecuencia_antes'        : (_) => SaturacionFrecuenciaAntes(),
+    'saturacion_frecuencia_despues'      : (_) => SaturacionFrecuenciaDespues(),
+    'historial_frecuencia_saturacion'   : (_) => HistorialFrecuenciaSaturacion(),
       
     'login_screen'                       : (_) => LoginScreen(),
     'menu_principal_screen'              : (_) => MenuPrincipalScreen(),

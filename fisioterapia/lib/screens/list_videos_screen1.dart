@@ -162,7 +162,7 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                               color: color.AppColor.secondPageIconColor,
                             ), SizedBox(width: 5,),
                             Text(
-                              '68 min',
+                              '5 min',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: color.AppColor.secondPageIconColor,
@@ -739,7 +739,7 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                       
                       // AssetImage(
                       // ),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -784,7 +784,7 @@ class _ListVideosScreen1State extends State<ListVideosScreen1> {
                 ),
                 child: Center(
                   child: Text(
-                    '15s rest', style: TextStyle(
+                    '', style: TextStyle(
                       color: Color(0xFF839fed),
                     ),
                   ),

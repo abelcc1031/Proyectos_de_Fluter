@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fisioterapia/custom_icons.dart';
 import 'package:fisioterapia/providers/saturacion_frecuencia_provider.dart';
 import 'package:fisioterapia/services/services.dart';
+import 'package:fisioterapia/share_prefs/preferencias_usuario.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,29 +12,40 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import '../theme/colors.dart' as color;
 
 
-class MedirSaturacionFrecuenciaScreen extends StatefulWidget {
+class SaturacionFrecuenciaDespues extends StatefulWidget {
 
   @override
-  State<MedirSaturacionFrecuenciaScreen> createState() => _MedirSaturacionFrecuenciaScreenState();
+  State<SaturacionFrecuenciaDespues> createState() => _SaturacionFrecuenciaDespuesState();
 }
 
-class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuenciaScreen> {
+class _SaturacionFrecuenciaDespuesState extends State<SaturacionFrecuenciaDespues> {
 
+  final prefs = new PreferenciasUsuario();
+
+  late int _saturacionDespues;
+  late int _frecuenciaDespues;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _saturacionDespues = prefs.saturacion_despues;
+    _frecuenciaDespues = prefs.frecuencia_despues;
+  }
   
 
   final firebase = FirebaseFirestore.instance;
 
   
-  Future<User?>obteniendoUsers(BuildContext _, AsyncSnapshot<User?> snapshot) async{
+  Future<User?>guardarFrecuenciaDespues(BuildContext _, AsyncSnapshot<User?> snapshot) async{
     try {
       if(snapshot.hasData) {
         final usuario = snapshot.data;
         print(usuario?.displayName);
         await firebase
         .collection("/Usuario/${usuario?.email}/frecuencia/")
-        .doc('medicion_frecuencia')
+        .doc('medicion_frecuencia_despues')
         .set({
-          'frecuencia_antes': frecuencia_antes,
           'frecuencia_despues': frecuencia_despues,
 
         });
@@ -43,15 +55,19 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
       print(e);
     }
 
+  }
+
+
+  Future<User?>guardarSaturacionDespues(BuildContext _, AsyncSnapshot<User?> snapshot) async{
+    
     try {
       if(snapshot.hasData) {
         final usuario = snapshot.data;
         print(usuario?.displayName);
         await firebase
         .collection("/Usuario/${usuario?.email}/saturacion/")
-        .doc('medicion_saturacion')
+        .doc('medicion_saturacion_despues')
         .set({
-          'saturacion_antes': saturacion_antes,
           'saturacion_despues': saturacion_despues,
 
         });
@@ -60,31 +76,8 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
     }catch(e) {
       print(e);
     }
-
-
-    // try {
-    //   if(snapshot.hasData) {
-    //     final usuario = snapshot.data;
-    //     print(usuario?.displayName);
-    //     await firebase
-    //     .collection("/Usuario/${usuario?.email}/saturacion/")
-    //     .doc('medicion_saturacion')
-    //     .set({
-    //       'saturacion_antes': saturacion_antes,
-    //       'saturacion_despues': saturacion_despues,
-
-    //     });
-        
-    //   }
-    // }catch(e) {
-    //   print(e);
-    // }
-
-    
   }
-  var frecuencia_antes;
   var frecuencia_despues;
-  var saturacion_antes;
   var saturacion_despues;
 
 
@@ -95,7 +88,7 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
   @override
   Widget build(BuildContext context) {
 
-    final saturacion_frecuencia = Provider.of<SaturacionFrecuenciaProvider>(context, listen: false);
+    // final saturacion_frecuencia = Provider.of<SaturacionFrecuenciaProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -138,15 +131,19 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
                 ),
 
                 SizedBox(height: 30,),
+
                 Container(
 
                   child: Column(
+
                     children: [
                       Text('Frecuencia cardiáca', style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.w600),),
                       SizedBox(height: 20,),
 
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           Container(
                             // color: Colors.red,
                             child: FutureBuilder<User?>(
@@ -157,44 +154,13 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
                                   print(user?.displayName);
                                   return SleekCircularSlider(
                                     appearance: CircularSliderAppearance(),
-                                    initialValue: saturacion_frecuencia.frecuencia_antes.toDouble(),
-                                    onChange: (double value){
-                                      print(value);
-                                      frecuencia_antes = value.toInt() + 1;
-        
-                                      obteniendoUsers(_, snapshot);
-
-                                    },
-                                  );
-        
-                                }else if(snapshot.hasError){
-                                  return Center(
-                                    child: Text('Network error'),
-                                  );
-                                }
-                                return Center(
-                                  child: CupertinoActivityIndicator(),
-                                );
-                              }
-                            ),
-                          ),
-        
-                          Container(
-                            // color: Colors.red,
-                            child: FutureBuilder<User?>(
-                              future: Auth.instance.user,
-                              builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
-                                if(snapshot.hasData){
-                                  final user = snapshot.data;
-                                  print(user?.displayName);
-                                  return SleekCircularSlider(
-                                    appearance: CircularSliderAppearance(),
-                                    initialValue: saturacion_frecuencia.frecuencia_despues.toDouble(),
+                                    initialValue: _frecuenciaDespues.toDouble(),
                                     onChange: (double value){
                                       print(value);
                                       frecuencia_despues = value.toInt() + 1;
         
-                                      obteniendoUsers(_, snapshot);
+                                      guardarFrecuenciaDespues(_, snapshot);
+                                      prefs.frecuencia_despues = frecuencia_despues;
                                     },
                                   );
         
@@ -225,37 +191,8 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
                       SizedBox(height: 20,),
 
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            // color: Colors.red,
-                            child: FutureBuilder<User?>(
-                              future: Auth.instance.user,
-                              builder:(BuildContext _ ,AsyncSnapshot <User?> snapshot){
-                                if(snapshot.hasData){
-                                  final user = snapshot.data;
-                                  print(user?.displayName);
-                                  return SleekCircularSlider(
-                                    appearance: CircularSliderAppearance(),
-                                    initialValue: 0,
-                                    onChange: (double value){
-                                      print(value);
-                                      saturacion_antes = value.toInt() + 1;
-        
-                                      obteniendoUsers(_, snapshot);
-                                    },
-                                  );
-        
-                                }else if(snapshot.hasError){
-                                  return Center(
-                                    child: Text('Network error'),
-                                  );
-                                }
-                                return Center(
-                                  child: CupertinoActivityIndicator(),
-                                );
-                              }
-                            ),
-                          ),
         
                           Container(
                             // color: Colors.red,
@@ -267,12 +204,16 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
                                   print(user?.displayName);
                                   return SleekCircularSlider(
                                     appearance: CircularSliderAppearance(),
-                                    initialValue: 0,
+                                    initialValue: _saturacionDespues.toDouble(),
                                     onChange: (double value){
                                       print(value);
                                       saturacion_despues = value.toInt() + 1;
         
-                                      obteniendoUsers(_, snapshot);
+                                      guardarSaturacionDespues(_, snapshot);
+
+                                      
+                                      prefs.saturacion_despues = saturacion_despues;
+
                                     },
                                   );
         
@@ -296,13 +237,18 @@ class _MedirSaturacionFrecuenciaScreenState extends State<MedirSaturacionFrecuen
         
                 SizedBox(height: 5),
 
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: color.AppColor.gradientFirst.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(10),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, 'historial_frecuencia_saturacion');
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: color.AppColor.gradientFirst.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text('Ver Historial', style: TextStyle(color: Colors.white, fontSize: 20),textAlign: TextAlign.center, ),
                   ),
-                  child: Text('Ver Historial', style: TextStyle(color: Colors.white, fontSize: 20),textAlign: TextAlign.center, ),
                 )
         
               ],

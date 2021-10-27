@@ -117,7 +117,7 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                               color: color.AppColor.secondPageIconColor,
                             ), SizedBox(width: 5,),
                             Text(
-                              '68 min',
+                              '16 min',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: color.AppColor.secondPageIconColor,
@@ -153,7 +153,7 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                               color: color.AppColor.secondPageIconColor,
                             ), SizedBox(width: 5,),
                             Text(
-                              'Resistend band',
+                              'Banda de resistencia',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: color.AppColor.secondPageIconColor,
@@ -185,6 +185,7 @@ class _NivelEjerciciosState extends State<NivelEjercicios> {
                   children: [
                     SizedBox(height: 10,),
                     NivelTarget(image: 'https://cutt.ly/nRyXunN', nivel: 'Nivel 1', categoria: 'Ejercicios sentados',rutaLista: 'utilidades_sentados_screen',),
+                    // NivelTarget(image: 'https://cutt.ly/nRyXunN', nivel: 'Nivel 1', categoria: 'Ejercicios sentados',rutaLista: 'utilidades_sentados_screen',),
                     NivelTarget(image: 'https://cutt.ly/KRyXkbA', nivel: 'Nivel 2', categoria: 'Ejercicios boca arriba',rutaLista: 'utilidades_echados_screen',),
                     NivelTarget(image: 'https://cutt.ly/ZRyXRVa', nivel: 'Nivel 3', categoria: 'Ejercicios parados',rutaLista: 'utilidades_parado_screen',),
                     SizedBox(height: 50,),

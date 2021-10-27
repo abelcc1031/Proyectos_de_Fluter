@@ -1,3 +1,4 @@
+import 'package:fisioterapia/providers/saturacion_frecuencia_provider.dart';
 import 'package:fisioterapia/providers/ui_provider.dart';
 import 'package:fisioterapia/screens/screens.dart';
 import 'package:fisioterapia/services/services.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         // La instruccion que se va a ejecutar cuando no hay ninguna instancia del provider creado
         ChangeNotifierProvider(create: (_) => new UiProvider()),
         ChangeNotifierProvider(create: ( _ ) => AuthServices(),),
+        ChangeNotifierProvider(create: (_) => SaturacionFrecuenciaProvider(),),
 
         
       ],
